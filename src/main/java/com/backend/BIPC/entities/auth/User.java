@@ -23,7 +23,7 @@ public class User {
     private String lastName;
     @Column(unique=true)
     @NotBlank(message = "email field is required")
-    private String email;
+    private String username;
     private String gender;
     @NotNull
     private String password;
@@ -38,7 +38,7 @@ public class User {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + username + '\'' +
                 ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
