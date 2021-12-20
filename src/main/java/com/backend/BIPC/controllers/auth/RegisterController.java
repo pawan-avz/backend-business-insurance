@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @CrossOrigin
-
 @RestController
 public class RegisterController {
     @Autowired
@@ -26,6 +25,7 @@ public class RegisterController {
     @PostMapping("/register")
     public User register(@Valid @RequestBody User user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRole("USER");
         return userService.saveUser(user);
     }
 }
