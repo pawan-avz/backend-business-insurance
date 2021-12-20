@@ -1,8 +1,8 @@
 package com.backend.BIPC.controllers.auth;
 
 //import com.backend.BIPC.JwtToken.JwtUtil;
-import com.backend.BIPC.entities.auth.RequestLogin;
-import com.backend.BIPC.entities.auth.ResponseLogin;
+import com.backend.BIPC.form.RequestLogin;
+import com.backend.BIPC.form.ResponseLogin;
 import com.backend.BIPC.entities.auth.User;
 import com.backend.BIPC.repositories.UserRepository;
 import com.backend.BIPC.services.auth.CustomUserDetailsService;
@@ -16,10 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 
 @CrossOrigin
 @RestController

@@ -1,4 +1,4 @@
-package com.backend.BIPC.entities.auth;
+package com.backend.BIPC.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
