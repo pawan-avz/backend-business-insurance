@@ -38,7 +38,6 @@ public class LoginController {
 
 
     @PostMapping("signing")
-    @CrossOrigin(origins = "http://localhost:3000/login")
     public ResponseEntity<?> login(@Valid @RequestBody RequestLogin requestLogin, HttpServletResponse response) throws Exception {
         System.out.println("Request Login"+requestLogin);
       try{

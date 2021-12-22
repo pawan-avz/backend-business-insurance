@@ -1,5 +1,6 @@
 package com.backend.BIPC.config;
 
+import com.backend.BIPC.entities.quote.PropertyDetails;
 import com.backend.BIPC.services.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -29,7 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public UserDetailsService getUserDetailsService(){
         return new CustomUserDetailsService();
     }
-
+    @Bean
+    public PropertyDetails getPropertyDetails(){return new PropertyDetails();}
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
