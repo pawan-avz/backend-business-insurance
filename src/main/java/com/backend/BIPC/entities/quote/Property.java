@@ -13,28 +13,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PropertyDetails {
+public class Property {
     @Id
+    @GeneratedValue
     private Long propertyId;
     private String item;
     private String model;
     private Long purchaseRate;
     private String purchaseDate;
     private String coverageDate;
+    private String insuranceType;
+    private String insuranceSubType;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "property_details_id")
-    private User property_details;
-
-    public User getProperty_details() {
-        return property_details;
-    }
-
-    public void setProperty_details(User property_details) {
-        this.property_details = property_details;
-    }
 }

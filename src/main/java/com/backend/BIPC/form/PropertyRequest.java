@@ -6,13 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-public class PremiumResponse {
+public class PropertyRequest {
     private Long propertyId;
     private String item;
-    private Double basePremium;
+    private String model;
+    private Long purchaseRate;
+    private String purchaseDate;
+    private String coverageDate;
     private String insuranceType;
     private String insuranceSubType;
+
+    private String email;
 }

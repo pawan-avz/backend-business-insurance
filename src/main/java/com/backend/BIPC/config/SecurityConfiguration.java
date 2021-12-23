@@ -1,14 +1,11 @@
 package com.backend.BIPC.config;
 
-import com.backend.BIPC.entities.quote.PropertyDetails;
+import com.backend.BIPC.entities.quote.Property;
 import com.backend.BIPC.services.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new CustomUserDetailsService();
     }
     @Bean
-    public PropertyDetails getPropertyDetails(){return new PropertyDetails();}
+    public Property getPropertyDetails(){return new Property();}
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
