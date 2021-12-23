@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Property {
     @Id
     @GeneratedValue
-    private Long propertyId;
+    private Long id;
     private String item;
     private String model;
     private Long purchaseRate;

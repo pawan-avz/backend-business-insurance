@@ -1,6 +1,5 @@
 package com.backend.BIPC.config;
 
-import com.backend.BIPC.entities.quote.Property;
 import com.backend.BIPC.services.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,14 +10,16 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
@@ -27,8 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public UserDetailsService getUserDetailsService(){
         return new CustomUserDetailsService();
     }
-    @Bean
-    public Property getPropertyDetails(){return new Property();}
+
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -49,9 +49,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth
-               .userDetailsService(customUserDetailsService)
-               .passwordEncoder(passwordEncoder());
+        auth
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
 
@@ -59,22 +59,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         AuthenticationEntryPoint BadCredentialsException = null;
-        http
+        http.cors().and()
                 .csrf()
-                    .disable()
+                .disable()
                 .authorizeRequests()
-                    .antMatchers("/admin/**")
-                    .hasAuthority("ADMIN")
-                    .antMatchers("/user/**")
-                    .hasAuthority("USER")
-                    .antMatchers("/**")
-                    .permitAll()
+                .antMatchers("/admin/**")
+                .hasAuthority("ADMIN")
+                .antMatchers("/user/**")
+                .hasAuthority("USER")
+                .antMatchers("/**")
+                .permitAll()
                 .anyRequest()
-                    .authenticated()
-                    .and()
+                .authenticated()
+                .and()
                 .formLogin()
-                    .loginProcessingUrl("/signing")
-                    .and()
+                .loginProcessingUrl("/signing")
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(BadCredentialsException);
 

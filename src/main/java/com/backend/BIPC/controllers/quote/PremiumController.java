@@ -11,7 +11,7 @@ import com.backend.BIPC.repositories.UserRepository;
 import com.backend.BIPC.services.quote.PremiumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
+//import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -45,7 +45,7 @@ public class PremiumController {
             Property property = propertyRepository.findByUserId(userId);
 
             premiumResponse = new PremiumResponse(
-                    property.getPropertyId(),property.getItem(),
+                    property.getId(),property.getItem(),
                     property.getPurchaseRate() * 0.1,
                     property.getInsuranceType(),
                     property.getInsuranceSubType());

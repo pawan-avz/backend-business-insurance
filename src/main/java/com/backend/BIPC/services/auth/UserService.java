@@ -10,36 +10,36 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+  @Autowired
+  private UserRepository userRepository;
+  @Autowired
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public String changePassword(ChangePasswordForm changePasswordForm) throws Exception {
-        User user = userRepository.findByUsername(changePasswordForm.getUsername());
-        if (user == null) {
-            throw new GenericException("User is not found !!");
-        } else {
-            if(bCryptPasswordEncoder.matches(changePasswordForm.getOldPassword(),user.getPassword())){
-                user.setPassword(bCryptPasswordEncoder.encode(changePasswordForm.getNewPassword()));
-                userRepository.save(user);
-                return "Password is updated successfully";
-            }
-            else {
-                throw new GenericException("Old password is not matched");
-            }
-
-        }
+  public String changePassword(ChangePasswordForm changePasswordForm) throws Exception {
+    User user = userRepository.findByUsername(changePasswordForm.getUsername());
+    if (user == null) {
+      throw new GenericException("User is not found !!");
+    } else {
+      if(bCryptPasswordEncoder.matches(changePasswordForm.getOldPassword(),user.getPassword())){
+        user.setPassword(bCryptPasswordEncoder.encode(changePasswordForm.getNewPassword()));
+        userRepository.save(user);
+        return "Password is updated successfully";
+      }
+      else {
+        throw new GenericException("Old password is not matched");
+      }
 
     }
 
-
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
+  }
 
 
-    public User getUserByUsername(String email) {
-        return userRepository.findByUsername(email);
-    }
+  public User saveUser(User user) {
+    return userRepository.save(user);
+  }
+
+
+  public User getUserByUsername(String email) {
+    return userRepository.findByUsername(email);
+  }
 }

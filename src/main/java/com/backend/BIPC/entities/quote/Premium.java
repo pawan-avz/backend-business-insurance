@@ -17,8 +17,7 @@ public class Premium {
     @GeneratedValue
     private Long id;
     private Double premium;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "property_id")
+    @ManyToOne
+    @JoinColumn(name = "property_id",referencedColumnName = "id")
     private Property property;
 }
