@@ -12,6 +12,20 @@ public class PropertyService {
     private PropertyRepository propertyRepository;
 
     public Property savePropertyDetails(Property propertyDetails){
-        return propertyRepository.save(propertyDetails);
+        Property property = propertyRepository.findByUserId(propertyDetails.getUser().getId());
+        if (property==null){
+            return propertyRepository.save(propertyDetails);
+        }
+        else {
+            property.setCoverageDate(propertyDetails.getCoverageDate());
+            property.setInsuranceSubType(propertyDetails.getInsuranceSubType());
+            property.setItem(propertyDetails.getItem());
+            property.setModel(propertyDetails.getModel());
+            property.setPurchaseDate(propertyDetails.getPurchaseDate());
+            property.setInsuranceType(propertyDetails.getInsuranceType());
+            property.setPurchaseRate(propertyDetails.getPurchaseRate());
+            return propertyRepository.save(property);
+        }
+
     }
 }
